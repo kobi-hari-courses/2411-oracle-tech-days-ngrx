@@ -16,3 +16,7 @@
         <button mat-raised-button color="accent" (click)="store.generateNewQuiz()">Generate new quiz</button>
     }
 </div>
+
+<div class="busy" *ngIf="store.busy()">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
