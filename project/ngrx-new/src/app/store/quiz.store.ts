@@ -1,7 +1,13 @@
-import { computed, effect } from "@angular/core";
+import { computed, effect, inject } from "@angular/core";
 import { QUESTIONS } from "../data/questions";
 import { QuizState } from "../models/quiz-state.model";
-import { signalStore, withComputed, withState, withMethods, patchState, withHooks, getState } from "@ngrx/signals";
+import { signalStore, withComputed, withState, withMethods, 
+         patchState, withHooks, getState } from "@ngrx/signals";
+import { rxMethod } from "@ngrx/signals/rxjs-interop";
+import { ColorQuizGeneratorService } from "../services/color-quiz-generator.service";
+import { catchError, exhaustAll, map, of, tap } from "rxjs";
+import { withConsistency } from "../signal-features/with-consistency.feature";
+import { withDevtools } from "../signal-features/with-devtools.feature";
 
 export const initialQuizState: QuizState = {
     questions: QUESTIONS, 
@@ -10,6 +16,7 @@ export const initialQuizState: QuizState = {
 
 export const QuizStore = signalStore(
     { providedIn: 'root'},
+    withDevtools('Quiz Store'),
     withState(initialQuizState), 
     withComputed(store => ({
         indexOfCurrentQuestion: computed(() => store.answers().length), 
@@ -20,7 +27,7 @@ export const QuizStore = signalStore(
     withComputed(store => ({
         currentQuestion: computed(() => store.questions()[store.indexOfCurrentQuestion()]), 
     })), 
-    withMethods(store => ({
+    withMethods((store, service = inject(ColorQuizGeneratorService)) => ({
         reset: () => {
             patchState(store, initialQuizState)
         }, 
@@ -32,12 +39,16 @@ export const QuizStore = signalStore(
                 }]
             }))
         },
+        generateNewQuiz: rxMethod<void>(trigger$ => trigger$.pipe(
+            map(() => service.createRandomQuiz().pipe(
+                tap({
+                    error: e => console.error(e)
+                }), 
+                catchError(() => of())
+            )), 
+            exhaustAll(),
+            tap(qs => patchState(store, { questions: qs, answers: [] }))
+        ))
     })),
-    withHooks(store => ({
-        onInit: () => {
-            effect(() => {
-                console.log(getState(store))
-            })
-        }
-    }))
+    withConsistency('quiz-state'), 
 );

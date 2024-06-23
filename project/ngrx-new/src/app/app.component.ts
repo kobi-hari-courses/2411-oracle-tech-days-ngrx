@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { SharedModule } from './shared.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { QuestionPresenterComponent } from './components/question-presenter/question-presenter.component';
@@ -17,6 +17,8 @@ import { QuizStore } from './store/quiz.store';
   imports: [SharedModule, ToolbarComponent, QuestionPresenterComponent, ProgressComponent, DoneComponent],
 })
 export class AppComponent {
+
   readonly store = inject(QuizStore);
+
 
 }
