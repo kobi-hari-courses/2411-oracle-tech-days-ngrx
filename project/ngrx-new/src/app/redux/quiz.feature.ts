@@ -13,7 +13,11 @@ export const quizFeature = createFeature({
         return {
             selectQuestionsCount,
             selectCurrentQuestionIndex,
-            selectCurrentQuestion
+            selectCurrentQuestion, 
+            selectQuizDone: createSelector(feature.selectQuestions, feature.selectAnswers, 
+                (questions, answers) => questions.length === answers.length), 
+            selectCorrectCount: createSelector(feature.selectAnswers, 
+                all => all.filter(a => a.isCorrect).length)
         };
     }
 });

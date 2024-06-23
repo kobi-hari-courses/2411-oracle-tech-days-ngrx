@@ -1,5 +1,15 @@
 <app-toolbar caption="Quiz Box App" icon="home"></app-toolbar>
 <div class="main">
+    @if(done$ | async) {
+        <app-done [correct]="(correctCount$ | async)??0" [total]="(totalQuestions$ | async)??0"/>
+    } @else {
+        <app-progress 
+        [value]="(currentIndex$ | async)??0" 
+        [of]="(totalQuestions$ | async)??0"/>
     <app-question-presenter *ngIf="(question$ | async) as question " 
-        [question]="question"/>
+        [question]="question"
+        (answered)="answerCurrentQuestion($event)"
+        />
+    <button mat-raised-button color="primary" (click)="reset()">Reset</button>
+    }
 </div>
