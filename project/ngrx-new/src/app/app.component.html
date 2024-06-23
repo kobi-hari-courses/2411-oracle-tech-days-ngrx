@@ -1,3 +1,5 @@
 <app-toolbar caption="Quiz Box App" icon="home"></app-toolbar>
 <div class="main">
+    <app-question-presenter *ngIf="(question$ | async) as question " 
+        [question]="question"/>
 </div>
