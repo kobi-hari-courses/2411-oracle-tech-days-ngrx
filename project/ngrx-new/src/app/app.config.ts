@@ -6,6 +6,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { quizFeature } from './redux/quiz.feature';
+import { provideEffects } from '@ngrx/effects';
+import * as myEffects from './redux/quiz.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(), 
     provideStore(), 
     provideStoreDevtools(), 
-    provideState(quizFeature)
+    provideState(quizFeature), 
+    provideEffects(myEffects)
 
   ]
 };
