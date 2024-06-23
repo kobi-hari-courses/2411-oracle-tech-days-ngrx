@@ -9,11 +9,11 @@
 @include typography.typography();
 
 .blue-theme {
-    @include theme.go(mat.$blue-palette, pal.$accent, true);
+    @include theme.go(mat.$m2-blue-palette, pal.$accent, true);
 }
 
 .green-theme {
-    @include theme.go(mat.$green-palette, pal.$accent, true);
+    @include theme.go(mat.$m2-green-palette, pal.$accent, true);
 
 }
 

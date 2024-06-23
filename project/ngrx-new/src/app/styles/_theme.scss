@@ -18,19 +18,19 @@
 }
 
 @function _create_theme_map($primary, $accent, $is-light: true) {
-  $plt-primary: mat.define-palette($primary);
-  $plt-accent: mat.define-palette($accent);
-  $plt-warn: mat.define-palette(mat.$red-palette);
+  $plt-primary: mat.m2-define-palette($primary);
+  $plt-accent: mat.m2-define-palette($accent);
+  $plt-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
   @if $is-light {
-    @return mat.define-light-theme((color: (primary: $plt-primary,
+    @return mat.m2-define-light-theme((color: (primary: $plt-primary,
           accent: $plt-accent,
           warn: $plt-warn,
         )));
   }
 
   @else {
-    @return mat.define-dark-theme((color: (primary: $plt-primary,
+    @return mat.m2-define-dark-theme((color: (primary: $plt-primary,
           accent: $plt-accent,
           warn: $plt-warn,
         )));
