@@ -1,4 +1,3 @@
-import { StateSignal } from '@ngrx/signals/src/state-signal';
 import {
     ReduxAction,
   ReduxActionType,
@@ -6,9 +5,9 @@ import {
   ReduxDevtoolsUnsubscriber,
   ReduxState,
 } from '../types/redux-messages';
-import { getState, patchState } from '@ngrx/signals';
+import { getState, patchState, WritableStateSource } from '@ngrx/signals';
 
-type Store = StateSignal<ReduxState>;
+type Store = WritableStateSource<ReduxState>;
 type Session = {
   readonly connection: ReduxDevtoolsConnection, 
   readonly unsubscriber: ReduxDevtoolsUnsubscriber
