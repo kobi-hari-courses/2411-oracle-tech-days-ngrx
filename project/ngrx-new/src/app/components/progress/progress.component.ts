@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 
 @Component({
-  selector: 'app-progress',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './progress.component.html',
-  styleUrl: './progress.component.scss'
+    selector: 'app-progress',
+    imports: [SharedModule],
+    templateUrl: './progress.component.html',
+    styleUrl: './progress.component.scss'
 })
 export class ProgressComponent {
   @Input({required: true})
