@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 
 @Component({
-  selector: 'app-done',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './done.component.html',
-  styleUrl: './done.component.scss'
+    selector: 'app-done',
+    imports: [SharedModule],
+    templateUrl: './done.component.html',
+    styleUrl: './done.component.scss'
 })
 export class DoneComponent {
   @Input({required: true})

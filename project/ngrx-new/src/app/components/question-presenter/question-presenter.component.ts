@@ -4,11 +4,10 @@ import { SharedModule } from '../../shared.module';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-question-presenter',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './question-presenter.component.html',
-  styleUrl: './question-presenter.component.scss'
+    selector: 'app-question-presenter',
+    imports: [SharedModule],
+    templateUrl: './question-presenter.component.html',
+    styleUrl: './question-presenter.component.scss'
 })
 export class QuestionPresenterComponent {
   @Input({required: true})
