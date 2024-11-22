@@ -1,3 +1,6 @@
 <app-toolbar caption="Quiz Box App" icon="home"></app-toolbar>
 <div class="main">
+    <app-progress [value]="5" [of]="9"/>
+    <app-question-presenter [question]="question"/>
+    <app-done [correct]="10" [total]="12"/>
 </div>

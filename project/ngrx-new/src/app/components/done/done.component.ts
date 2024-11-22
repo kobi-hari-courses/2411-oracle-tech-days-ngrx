@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 
 @Component({
@@ -8,14 +8,11 @@ import { SharedModule } from '../../shared.module';
     styleUrl: './done.component.scss'
 })
 export class DoneComponent {
-  @Input({required: true})
-  correct!: number;
+  readonly correct = input.required<number>();
 
-  @Input({required: true})
-  total!: number;
+  readonly total = input.required<number>();
 
-  get score() {
-    return this.correct / this.total;
-  }
+  readonly score = computed(() => this.correct() / this.total());
+
 
 }

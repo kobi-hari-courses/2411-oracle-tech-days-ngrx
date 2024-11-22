@@ -1,45 +1,49 @@
-<h1>
-  Question: What do you get when you add
-  @for (color of _question.caption; track color) {
-    @if($index > 0) {
-      @if ($last) {
-        and 
-      } @else {
-        , 
+@if(question(); as question) {
+  <h1>
+    Question: What do you get when you add
+    @for (color of question.caption; track color) {
+      @if($index > 0) {
+        @if ($last) {
+          and 
+        } @else {
+          , 
+        }
       }
+  
+      {{color | colorName}}
+      <span class="color-item" [style.background]="color"></span>
     }
-
-    {{color | colorName}}
-    <span class="color-item" [style.background]="color"></span>
-  }
-  ?</h1>
-<mat-radio-group [formControl]="form">
-  @for(answer of _question.answers; track answer) {
-  <div class="answer">
-    <mat-radio-button [value]="$index" [color]="'primary'">
-      {{ $index + 1 }}. {{ answer | colorName }}
-      </mat-radio-button>
-      <span class="color-item" [style.background]="answer|lowercase"></span>
-
-    @if(isAnswered) { @if ($index === _question.correctIndex) {
-    <div class="green-theme">
-      <mat-icon class="green-theme" color="primary">check</mat-icon>
+    ?</h1>
+  <mat-radio-group [(ngModel)]="userAnswer">
+    @for(answer of question.answers; track answer) {
+    <div class="answer">
+      <mat-radio-button [value]="$index" [color]="'primary'" 
+        [disabled]="submittedAnswer() !== null">
+        {{ $index + 1 }}. {{ answer | colorName }}
+        </mat-radio-button>
+        <span class="color-item" [style.background]="answer|lowercase"></span>
+  
+      @if(isAnswered()) { @if ($index === question.correctIndex) {
+      <div class="green-theme">
+        <mat-icon class="green-theme" color="primary">check</mat-icon>
+      </div>
+      } @else {@if ($index === submittedAnswer()) {
+      <div class="green-theme">
+        <mat-icon class="green-theme" color="warn">close</mat-icon>
+      </div>
+  
+      }} }
     </div>
-    } @else {@if ($index === submittedAnswer) {
-    <div class="green-theme">
-      <mat-icon class="green-theme" color="warn">close</mat-icon>
-    </div>
-
-    }} }
-  </div>
-  }
-</mat-radio-group>
-
-<button
-  mat-raised-button
-  [disabled]="form.invalid || isAnswered"
-  color="primary"
-  (click)="submit()"
->
-  Submit
-</button>
+    }
+  </mat-radio-group>
+  
+  <button
+    mat-raised-button
+    [disabled]="!canSubmit()"
+    color="primary"
+    (click)="submit()"
+  >
+    Submit
+  </button>
+  
+}
