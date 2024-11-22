@@ -2,6 +2,7 @@ import { Component, computed, EventEmitter, input, Input, output, Output, signal
 import { Question } from '../../models/question.model';
 import { SharedModule } from '../../shared.module';
 import { FormsModule } from '@angular/forms';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-question-presenter',
@@ -19,6 +20,10 @@ export class QuestionPresenterComponent {
   readonly isAnswered = computed(() => this.submittedAnswer() !== null);
   readonly canSubmit = computed(() => this.userAnswer() !== null && !this.isAnswered());
 
+  constructor() {
+    toObservable(this.question)
+      .subscribe(_ => this.reset());
+  }
 
   reset() {
     this.userAnswer.set(null);
