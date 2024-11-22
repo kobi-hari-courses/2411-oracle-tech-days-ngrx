@@ -1,7 +1,7 @@
-<img src="./images/geek-week.png" Height="80"><img src="./images/title.png" Height="80"><img src="./images/john-bryce.png" Height="80">
+<img src="./images/title.png" Height="80"><img src="./images/john-bryce.png" Height="80">
 
 # NgRx New with Signals @ Dev Geek Week 2024
-* By Kobi Hari (23/06/2024)
+* By Kobi Hari (28/11/2024)
 
 ## Contact me
 Please feel free to contact me for questions, or just to have a chat :-)
