@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 
 @Component({
@@ -8,14 +8,10 @@ import { SharedModule } from '../../shared.module';
     styleUrl: './progress.component.scss'
 })
 export class ProgressComponent {
-  @Input({required: true})
-  value!: number;
+  readonly value = input.required<number>();
 
-  @Input({required: true})
-  of!: number;
+  readonly of = input.required<number>();
 
-  get ratio() {
-    return this.value / this.of;
-  }
+  readonly ratio = computed(() => this.value() / this.of());
 
 }

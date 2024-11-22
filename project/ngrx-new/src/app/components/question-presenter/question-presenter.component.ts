@@ -1,46 +1,36 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, input, Input, output, Output, signal } from '@angular/core';
 import { Question } from '../../models/question.model';
 import { SharedModule } from '../../shared.module';
-import { FormControl, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-question-presenter',
-    imports: [SharedModule],
+    imports: [SharedModule, FormsModule],
     templateUrl: './question-presenter.component.html',
     styleUrl: './question-presenter.component.scss'
 })
 export class QuestionPresenterComponent {
-  @Input({required: true})
-  set question(value: Question) {
-    this._question = value;
-    this.reset();
-  }
+  readonly question = input.required<Question>();
 
-  @Output()
-  answered = new EventEmitter<number>();
+  readonly answered = output<number>();
 
-  form = new FormControl<number | null>(null, Validators.required);
-  submittedAnswer: number | null = null;
+  readonly userAnswer = signal<number | null>(null);
+  readonly submittedAnswer = signal<number | null>(null);
+  readonly isAnswered = computed(() => this.submittedAnswer() !== null);
+  readonly canSubmit = computed(() => this.userAnswer() !== null && !this.isAnswered());
 
-  get isAnswered() { return this.submittedAnswer !== null}
-
-  protected _question!: Question;
 
   reset() {
-    this.form.reset(null);
-    this.form.enable();
-    this.submittedAnswer = null;
+    this.userAnswer.set(null);
+    this.submittedAnswer.set(null);
   }
 
   submit() {
-    const res = this.form.value;
-    if (res === null) return;
+    if (this.isAnswered() === null) return;
+    this.submittedAnswer.set(this.userAnswer());
 
-    this.submittedAnswer = res;
-    this.form.disable();
     setTimeout(() => {
-      this.answered.emit(res);
-      this.reset();
+      this.answered.emit(this.submittedAnswer()!);
       
     }, 1500);
 
