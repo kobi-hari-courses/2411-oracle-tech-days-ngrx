@@ -21,11 +21,9 @@ export class QuestionPresenterComponent {
   readonly canSubmit = computed(() => this.userAnswer() !== null && !this.isAnswered());
 
   constructor() {
-    toObservable(this.question).subscribe((question) => {
-      this.reset();
-    });
+    toObservable(this.question)
+      .subscribe(_ => this.reset());
   }
-
 
   reset() {
     this.userAnswer.set(null);
