@@ -11,3 +11,7 @@
     <app-question-presenter [question]="question"/>
     <app-done [correct]="10" [total]="12"/>
 </div>
+
+<pre>
+    {{ store.questions() | json }}
+</pre>
