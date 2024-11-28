@@ -6,7 +6,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { quizFeature } from './store/quiz.feature';
+import { quizFeature } from './store/quiz/quiz.feature';
 
 export const appConfig: ApplicationConfig = {
     providers: [provideRouter(routes), 

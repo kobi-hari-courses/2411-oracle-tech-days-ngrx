@@ -1,5 +1,5 @@
-import { QUESTIONS } from "../data/questions";
-import { Question } from "../models/question.model";
+import { QUESTIONS } from "../../data/questions";
+import { Question } from "../../models/question.model";
 
 export interface QuizSlice {
     readonly questions: Question[];
