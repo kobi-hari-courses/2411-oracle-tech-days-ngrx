@@ -1,4 +1,5 @@
 <img src="./images/john-bryce.png" Height="80">
+<img src="./images/title.png" Height="80">
 
 # NgRx New with Signals
 * By Kobi Hari (28/11/2024)
