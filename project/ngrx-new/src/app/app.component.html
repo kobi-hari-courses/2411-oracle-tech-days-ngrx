@@ -12,8 +12,6 @@
             [question]="store.currentQuestion()"
             (answered)="store.answerCurrentQuestion($event)"
             />
-        <button mat-raised-button color="primary" (click)="store.reset()">Reset</button>
-        <button mat-raised-button color="accent" (click)="store.generateNewQuiz()">Generate new quiz</button>
     }
 </div>
 
