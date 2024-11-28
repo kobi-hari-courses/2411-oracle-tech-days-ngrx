@@ -22,7 +22,7 @@ export const quizFeature = createFeature({
             selectCurrentQuestion, 
             selectQuestionsCount, 
             selectIsDone, 
-            selectCorrectAnswers
+            selectCorrectAnswers, 
         }
     } 
 });

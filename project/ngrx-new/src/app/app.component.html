@@ -2,7 +2,8 @@
   <button mat-icon-button matTooltip="Reset Quiz" (click)="reset()">
     <mat-icon>restart_alt</mat-icon>
   </button>
-  <button mat-icon-button matTooltip="Generate New Quiz">
+  <button mat-icon-button matTooltip="Generate New Quiz"
+    (click)="generateQuiz()">
     <mat-icon>auto_fix_high</mat-icon>
   </button>
 </app-toolbar>
@@ -23,3 +24,9 @@
 
   }
 </div>
+
+@if(isBusy$ | async) {
+  <div class="busy">
+    <mat-spinner/>
+  </div>
+}

@@ -7,6 +7,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { quizFeature } from './store/quiz/quiz.feature';
+import { provideEffects } from '@ngrx/effects';
+import { generateQuizEffect } from './store/quiz/quiz.effects';
 
 export const appConfig: ApplicationConfig = {
     providers: [provideRouter(routes), 
@@ -14,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(), 
     provideStore(),
     provideStoreDevtools(), 
-    provideState(quizFeature)
+    provideState(quizFeature), 
+    provideEffects({generateQuizEffect})
     ]
 };

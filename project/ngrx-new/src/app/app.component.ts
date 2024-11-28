@@ -26,6 +26,9 @@ export class AppComponent {
   readonly isDone$ = this.store
     .select(quizFeature.selectIsDone);
 
+  readonly isBusy$ = this.store
+    .select(quizFeature.selectIsBusy);
+
   readonly questionsCount$ = this.store
     .select(quizFeature.selectQuestionsCount);
 
@@ -39,6 +42,11 @@ export class AppComponent {
 
   answerQuestion(userAnswer: number) {
     const action = userActions.answerCurrentQuestion({userAnswer});
+    this.store.dispatch(action);
+  }
+
+  generateQuiz() {
+    const action = userActions.generateQuiz();
     this.store.dispatch(action);
   }
 

@@ -20,6 +20,7 @@ const sharable: Type<any>[] = [
     MatRippleModule, 
     MatTooltipModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
     CommonModule, 
     RouterModule, 
     ReactiveFormsModule, 
