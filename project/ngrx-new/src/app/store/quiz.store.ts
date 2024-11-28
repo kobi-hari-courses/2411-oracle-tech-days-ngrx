@@ -12,7 +12,9 @@ export const QuizStore = signalStore(
                 store.questions()[currentQuestionIndex()]);
         return {
             currentQuestionIndex, 
-            currentQuestion
+            currentQuestion, 
+            questionsCount: computed(() => store.questions().length),
+            answersCount: computed(() => store.answers().length),   
         }
     }), 
 );

@@ -7,7 +7,8 @@
     </button>
 </app-toolbar>
 <div class="main">
-    <app-progress [value]="5" [of]="9"/>
+    <app-progress [value]="store.answersCount()" 
+                  [of]="store.questionsCount()"/>
     <app-question-presenter/>
 </div>
 
