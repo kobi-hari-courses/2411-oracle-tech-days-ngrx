@@ -1,4 +1,11 @@
-<app-toolbar caption="Quiz Box App" icon="home"></app-toolbar>
+<app-toolbar caption="Colors Quiz!" icon="palette">
+    <button mat-icon-button matTooltip="Reset Quiz">
+        <mat-icon>restart_alt</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Generate New Quiz">
+        <mat-icon>auto_fix_high</mat-icon>
+    </button>
+</app-toolbar>
 <div class="main">
     <app-progress [value]="5" [of]="9"/>
     <app-question-presenter [question]="question"/>
