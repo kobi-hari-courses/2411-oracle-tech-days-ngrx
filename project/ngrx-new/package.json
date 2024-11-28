@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-architects/ngrx-toolkit": "^18.1.1",
     "@angular/animations": "^19.0.0",
     "@angular/cdk": "^19.0.0",
     "@angular/common": "^19.0.0",
@@ -23,6 +24,8 @@
     "@ngrx/signals": "^18.1.1",
     "color-convert": "^2.0.1",
     "color-namer": "^1.4.0",
+    "i": "^0.3.7",
+    "npm": "^10.9.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
