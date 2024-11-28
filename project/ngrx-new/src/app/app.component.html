@@ -1,8 +1,10 @@
 <app-toolbar caption="Colors Quiz!" icon="palette">
-    <button mat-icon-button matTooltip="Reset Quiz">
+    <button mat-icon-button matTooltip="Reset Quiz"
+        (click)="store.reset()">
         <mat-icon>restart_alt</mat-icon>
     </button>
-    <button mat-icon-button matTooltip="Generate New Quiz">
+    <button mat-icon-button matTooltip="Generate New Quiz"
+        (click)="store.generate()">
         <mat-icon>auto_fix_high</mat-icon>
     </button>
 </app-toolbar>
@@ -11,4 +13,10 @@
                   [of]="store.questionsCount()"/>
     <app-question-presenter/>
 </div>
+
+@if(store.isBusy()) {
+    <div class="busy">
+        <mat-spinner></mat-spinner>
+    </div>    
+}
 

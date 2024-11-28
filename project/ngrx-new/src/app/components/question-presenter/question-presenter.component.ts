@@ -13,8 +13,6 @@ import { QuizStore } from '../../store/quiz.store';
 export class QuestionPresenterComponent {
   readonly store = inject(QuizStore);
 
-  readonly answered = output<number>();
-
   readonly userAnswer = signal<number | null>(null);
   readonly submittedAnswer = signal<number | null>(null);
   readonly isAnswered = computed(() => this.submittedAnswer() !== null);
@@ -35,8 +33,7 @@ export class QuestionPresenterComponent {
     this.submittedAnswer.set(this.userAnswer());
 
     setTimeout(() => {
-      this.answered.emit(this.submittedAnswer()!);
-      
+      this.store.answerCurrentQuestion(this.userAnswer()!);      
     }, 1500);
 
 
