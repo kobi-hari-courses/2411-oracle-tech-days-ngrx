@@ -1,8 +1,8 @@
-import { Component, computed, EventEmitter, input, Input, output, Output, signal } from '@angular/core';
-import { Question } from '../../models/question.model';
+import { Component, computed, EventEmitter, inject, input, Input, output, Output, signal } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 import { FormsModule } from '@angular/forms';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { QuizStore } from '../../store/quiz.store';
 
 @Component({
     selector: 'app-question-presenter',
@@ -11,7 +11,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
     styleUrl: './question-presenter.component.scss'
 })
 export class QuestionPresenterComponent {
-  readonly question = input.required<Question>();
+  readonly store = inject(QuizStore);
 
   readonly answered = output<number>();
 
@@ -21,7 +21,7 @@ export class QuestionPresenterComponent {
   readonly canSubmit = computed(() => this.userAnswer() !== null && !this.isAnswered());
 
   constructor() {
-    toObservable(this.question)
+    toObservable(this.store.currentQuestion)
       .subscribe(_ => this.reset());
   }
 

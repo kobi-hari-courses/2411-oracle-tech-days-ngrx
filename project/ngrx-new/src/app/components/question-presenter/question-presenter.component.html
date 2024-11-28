@@ -1,4 +1,4 @@
-@if(question(); as question) {
+@if(store.currentQuestion(); as question) {
   <h1>
     Question: What do you get when you add
     @for (color of question.caption; track color) {

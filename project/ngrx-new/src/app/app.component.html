@@ -8,10 +8,6 @@
 </app-toolbar>
 <div class="main">
     <app-progress [value]="5" [of]="9"/>
-    <app-question-presenter [question]="question"/>
-    <app-done [correct]="10" [total]="12"/>
+    <app-question-presenter/>
 </div>
 
-<pre>
-    {{ store.questions() | json }}
-</pre>

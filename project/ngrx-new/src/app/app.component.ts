@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { SharedModule } from './shared.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { QuestionPresenterComponent } from './components/question-presenter/question-presenter.component';
@@ -22,6 +22,5 @@ export class AppComponent {
 
   constructor() {
   }
-
 
 }
